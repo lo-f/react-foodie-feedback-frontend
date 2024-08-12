@@ -56,4 +56,4 @@ const getUser = () =>  {
   return user;
 }
 
-export { signup, signin, getUser };
+export default { signup, signin, getUser };
