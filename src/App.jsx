@@ -6,10 +6,12 @@ import SigninForm from './components/SigninForm/SigninForm'
 import SignupForm from './components/SignupForm/SignupForm'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './components/Landing/Landing'
+import RestaurantsList from './components/RestaurantsList/RestaurantsList'
 
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
+  const [restaurants, setRestaurants] = useState([])
 
   const handleSignout = () => {
     authService.signout()
@@ -23,6 +25,9 @@ function App() {
       <Route 
         path='/'
         element={<Landing user={user} />} />
+      <Route
+        path='/restaurants'
+        element={<RestaurantsList restaurants={restaurants}/>}/>
       <Route
         path='/signin' 
         element={<SigninForm setUser={setUser}/>} />
