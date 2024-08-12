@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import authService from '../../services/authservice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SignupForm = (props) => {
     const navigate = useNavigate()
@@ -25,6 +25,12 @@ const SignupForm = (props) => {
         } catch (error) {
             updateMessage(error.message)
         }
+    }
+
+    const { username, password, confirmPassword } = formData;
+
+    const isFormInvalid = () => {
+        return !(username && password && password === confirmPassword)
     }
 
     return (
@@ -56,7 +62,7 @@ const SignupForm = (props) => {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     />
-                <button type="submit">Submit</button>
+                <button disabled={isFormInvalid()} type="submit">Submit</button>
             </form>
         </>
     )
