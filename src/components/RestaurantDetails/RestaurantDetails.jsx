@@ -58,6 +58,4 @@ const RestaurantDetails = (props) => {
     )
 
 
-}
-
 export default RestaurantDetails

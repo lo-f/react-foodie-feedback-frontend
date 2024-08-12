@@ -13,7 +13,8 @@ const ReviewForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
+        //TODO handle add comment
+        setFormData({ text: '', rating: ''})
     };
 
     return (
