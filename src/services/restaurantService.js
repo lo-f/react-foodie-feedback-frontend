@@ -26,3 +26,5 @@ const createRestaurant = async (restaurantFormData) => {
         console.log(error)
     }
 }
+
+export { index, createRestaurant }
