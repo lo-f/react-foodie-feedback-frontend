@@ -7,12 +7,12 @@ const ReviewForm = () => {
     });
     
 
-    const handleChange = (event) => {
-
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
         // Handle form submission logic here
     };
 
