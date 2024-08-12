@@ -7,7 +7,7 @@ const ReviewForm = () => {
     });
     
 
-    const handleChange(event) {
+    const handleChange = (event) => {
 
     }
 
