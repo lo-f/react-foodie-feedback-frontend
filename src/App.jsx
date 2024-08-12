@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import './App.css'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import authService from './services/authservice'
@@ -25,10 +25,18 @@ function App() {
   }
 
   const handleAddRestaurant = async (restaurantFormData) => {
-    const newRestaurant = await restaurantService.createRestaurant(restaurantFormData);
+    const newRestaurant = await restaurantService.create(restaurantFormData);
     setRestaurants([newRestaurant, ...restaurants]);
     navigate('/restaurants')
   };
+
+  useEffect(() => {
+    const fetchAllRestaurants = async () => {
+      const restaurantsData = await restaurantService.index();
+      setRestaurants(restaurantsData)
+    };
+    if (user) fetchAllRestaurants();
+  }, [user])
   
   return (
     <>
