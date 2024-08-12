@@ -27,4 +27,4 @@ const createRestaurant = async (restaurantFormData) => {
     }
 }
 
-export { index, createRestaurant }
+export default { index, createRestaurant }
