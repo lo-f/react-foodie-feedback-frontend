@@ -49,7 +49,7 @@ const RestaurantForm = (props) => {
                     onChange={handleChange}
                     required
                      />
-                <label htmlFor='description'>Restaurant Name: </label>
+                <label htmlFor='description'>Description: </label>
                 <textarea 
                     id='description'
                     name='description'
