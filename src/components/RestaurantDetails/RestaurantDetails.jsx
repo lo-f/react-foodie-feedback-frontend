@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import restaurantService from "../../services/restaurantService.js"
 import ReviewForm from "../ReviewForm/ReviewForm"
 import { Link } from 'react-router-dom'
-import Landing from "../Landing/Landing.jsx"
+import Loading from '../../components/Loading/Loading.jsx'
 
 
 const RestaurantDetails = (props) => {
@@ -27,7 +27,7 @@ const RestaurantDetails = (props) => {
         setRestaurant({...restaurant, reviews: [...restaurant.reviews, newReview]})
     }
 
-    if (!restaurant) return <Landing />;
+    if (!restaurant) return <Loading />;
 
     return (
         <main>

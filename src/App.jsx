@@ -12,6 +12,7 @@ import RestaurantForm from "./components/RestaurantForm/RestaurantForm";
 import MyReviews from "./components/MyReviews/MyReviews";
 import RestaurantDetails from "./components/RestaurantDetails/RestaurantDetails"
 import restaurantService from "./services/restaurantService";
+import Loading from './components/Loading/Loading'
 
 
 function App() {
