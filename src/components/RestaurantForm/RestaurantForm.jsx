@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import restaurantService from '../../services/restaurantService'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-const RestaurantForm = ({ user }) => {
+const RestaurantForm = (props) => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -18,9 +18,22 @@ const RestaurantForm = ({ user }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        restaurantService.createRestaurant(formData);
+        if (restaurantId) {
+            preprocessCSS.handleUpdateRestaurant(restaurantId, formData)
+        } else {
+        props.handleAddRestaurant(formData)};
         navigate('/restaurants')
     }
+
+    const { restaurantId, reviewId } = useParams()
+
+    useEffect(() => {
+        const fetchRestaurant = async () => {
+            const restaurantData = await restaurantService.show(restaurantId);
+            setFormData(restaurantData);
+        }
+        if (restaurantId) fetchRestaurant();
+    }, [restaurantId])
 
     return (
         <>
