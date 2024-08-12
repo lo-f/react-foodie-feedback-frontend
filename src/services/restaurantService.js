@@ -11,6 +11,17 @@ const index = async () => {
     }
 }
 
+const show = async (restaurantId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${restaurantId}`, {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+        });
+        return res.json();
+    } catch (error) {
+        console.log (error)
+    }
+};
+
 const createRestaurant = async (restaurantFormData) => {
     try {
         const res = await fetch(BASE_URL, {
@@ -43,4 +54,4 @@ const createReview = async (restaurantId, reviewFormData) => {
     }
 }
 
-export default { index, createRestaurant, createReview }
+export default { index, show, createRestaurant, createReview }
