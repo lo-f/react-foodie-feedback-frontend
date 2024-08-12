@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import authService from './services/authservice'
 import SigninForm from './components/SigninForm/SigninForm'
 import SignupForm from './components/SignupForm/SignupForm'
@@ -9,6 +9,7 @@ import Landing from './components/Landing/Landing'
 import RestaurantsList from './components/RestaurantsList/RestaurantsList'
 import RestaurantForm from './components/RestaurantForm/RestaurantForm'
 import MyReviews from './components/MyReviews/MyReviews'
+import restaurantService from './services/restaurantService'
 
 
 function App() {
@@ -16,11 +17,19 @@ function App() {
   const [restaurants, setRestaurants] = useState([])
   const [reviews, setReviews] = useState([])
 
+  const navigate = useNavigate()
+
   const handleSignout = () => {
     authService.signout()
     setUser(null)
   }
 
+  const handleAddRestaurant = async (restaurantFormData) => {
+    const newRestaurant = await restaurantService.createRestaurant(restaurantFormData);
+    setRestaurants([newRestaurant, ...restaurants]);
+    navigate('/restaurants')
+  };
+  
   return (
     <>
     <NavBar user={user} handleSignout={handleSignout} />
@@ -42,7 +51,7 @@ function App() {
         element={<SignupForm setUser={setUser}/>} />
       <Route 
         path='/restaurants/new'
-        element={<RestaurantForm />} />
+        element={<RestaurantForm handleAddRestaurant={handleAddRestaurant}/>} />
     </Routes>
     </>
   )
