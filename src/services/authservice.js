@@ -56,4 +56,8 @@ const getUser = () =>  {
   return user;
 }
 
-export default { signup, signin, getUser };
+const signout = () => {
+  localStorage.removeItem('token');
+}
+
+export default { signup, signin, getUser, signout };

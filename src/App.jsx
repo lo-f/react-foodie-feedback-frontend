@@ -11,9 +11,14 @@ import Landing from './components/Landing/Landing'
 function App() {
   const [user, setUser] = useState(authService.getUser())
 
+  const handleSignout = () => {
+    authService.signout()
+    setUser(null)
+  }
+
   return (
     <>
-    <NavBar user={user}/>
+    <NavBar user={user} handleSignout={handleSignout} />
     <Routes>
       <Route 
         path='/'
