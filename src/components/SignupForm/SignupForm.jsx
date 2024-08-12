@@ -16,11 +16,11 @@ const SignupForm = (props) => {
     }
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const userData = authService.signup(formData)
-            props.setUser(formData)
+            const userData = await authService.signup(formData)
+            props.setUser(userData.user)
             navigate('/')
         } catch (error) {
             updateMessage(error.message)
