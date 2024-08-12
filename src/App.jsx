@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
+import authService from './services/authService'
 import SigninForm from './components/SigninForm/SigninForm'
 import SignupForm from './components/SignupForm/SignupForm'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './components/Landing/Landing'
 
+
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(authService.getUser())
 
   return (
     <>
