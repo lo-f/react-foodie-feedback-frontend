@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
-import restaurantService from "../../services/restaurantService"
+import restaurantService from "../../services/restaurantService.js"
 import ReviewForm from "../ReviewForm/ReviewForm"
 import { Link } from 'react-router-dom'
+import Landing from "../Landing/Landing.jsx"
 
 
 const RestaurantDetails = (props) => {
     const { restaurantId } = useParams();
+
     console.log('restaurantId:', restaurantId)
 
     const [restaurant, setRestaurant] = useState(null)
@@ -25,15 +27,16 @@ const RestaurantDetails = (props) => {
         setRestaurant({...restaurant, reviews: [...restaurant.reviews, newReview]})
     }
 
+    if (!restaurant) return <Landing />;
+
     return (
-        <>
         <main>
             <section>
                 <header>
-                    <p>{restaurant.name.toUpperCase()}</p>
+                    <p>{restaurant.name}</p>
                 </header>
             </section>
-            <section>
+            {/* <section>
                 <h2>Reviews</h2>
                 <ReviewForm handleAddReview={handleAddReview} />
                 {!restaurant.reviews.length && <p>No reviews for this restaurant!</p>}
@@ -49,13 +52,12 @@ const RestaurantDetails = (props) => {
                                 )}
                             </div>
                         </header>
-                        <p>{review.text}</p>
                     </article>
                 ))}
-            </section>
+                <p>{review.text}</p>
+            </section> */}
         </main>
-        </>
     )
+}
 
-
-export default RestaurantDetails
+export default RestaurantDetails;
