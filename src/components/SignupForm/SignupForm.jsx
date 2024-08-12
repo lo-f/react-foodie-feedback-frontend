@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import authService from '../../services/authService'
+import * as authService from '../../services/authservice'
 import { Link, useNavigate } from 'react-router-dom'
 
 const SignupForm = (props) => {
