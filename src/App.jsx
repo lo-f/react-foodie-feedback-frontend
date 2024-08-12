@@ -7,11 +7,13 @@ import SignupForm from './components/SignupForm/SignupForm'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './components/Landing/Landing'
 import RestaurantsList from './components/RestaurantsList/RestaurantsList'
+import MyReviews from './components/MyReviews/MyReviews'
 
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
   const [restaurants, setRestaurants] = useState([])
+  const [reviews, setReviews] = useState([])
 
   const handleSignout = () => {
     authService.signout()
@@ -25,6 +27,9 @@ function App() {
       <Route 
         path='/'
         element={<Landing user={user} />} />
+      <Route 
+        path='myreviews'
+        element={<MyReviews reviews={reviews} user={user}/>}/>
       <Route
         path='/restaurants'
         element={<RestaurantsList restaurants={restaurants}/>}/>
