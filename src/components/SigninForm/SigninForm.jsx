@@ -1,10 +1,29 @@
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import * as authService from '../../services/authservice'
 
 const SigninForm = (props) => {
-    const [formData, setFormData] = useState({ username: '', password: ''})
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({ username: '', password: ''});
+    const [message, setMessage] = useState(['']);
+    
+    const updateMessage = (message) => {
+        setMessage(message)
+    }
     
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const user = await authService.signin(formData);
+            props.setUser(user);
+            navigate('/')
+        } catch (error) {
+            updateMessage(error.message)
+        }
     }
 
     // TODO handle submit
@@ -12,7 +31,8 @@ const SigninForm = (props) => {
     return (
         <>
             <h1>Sign In</h1>
-            <form>
+            <p>{message}</p>
+            <form autoComplete='off' onSubmit={handleSubmit}>
                 <label htmlFor='signinUsername'>Username: </label>
                 <input 
                     type="text" 
