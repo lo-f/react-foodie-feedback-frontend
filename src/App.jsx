@@ -29,10 +29,7 @@ function App() {
     setRestaurants([newRestaurant, ...restaurants]);
     navigate('/restaurants')
   };
-
   
-
-
   return (
     <>
     <NavBar user={user} handleSignout={handleSignout} />
