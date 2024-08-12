@@ -28,7 +28,7 @@ function App() {
 
   const handleAddRestaurant = async (restaurantFormData) => {
 
-    const newRestaurant = await restaurantService.create(restaurantFormData);
+    const newRestaurant = await restaurantService.createRestaurant(restaurantFormData);
     setRestaurants([newRestaurant, ...restaurants]);
     navigate("/restaurants");
   };
