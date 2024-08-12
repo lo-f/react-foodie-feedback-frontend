@@ -21,10 +21,6 @@ function App() {
     setUser(null)
   }
 
-  const handleChange = () => {
-    
-  }
-
   return (
     <>
     <NavBar user={user} handleSignout={handleSignout} />

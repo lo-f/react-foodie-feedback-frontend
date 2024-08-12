@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.VITE_EXPRESS_BACKEND_URL}/restaurants`;
+const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/restaurants`;
 
 const index = async () => {
     try {

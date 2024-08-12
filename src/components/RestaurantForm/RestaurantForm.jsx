@@ -70,6 +70,7 @@ const RestaurantForm = ({ user }) => {
                     value={formData.category}
                     onChange={handleChange}
                     required>
+                        <option value="" default={true} disabled={true}></option>
                         <option value="Chinese">Chinese</option>
                         <option value="Italian">Italian</option>
                         <option value="Fast Food">Fast Food</option>
