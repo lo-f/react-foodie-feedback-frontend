@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import restaurantService from '../../services/restaurantService'
+import { useNavigate } from 'react-router-dom'
 
 const RestaurantForm = ({ user }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -9,17 +12,28 @@ const RestaurantForm = ({ user }) => {
         category: ''
     })
 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        restaurantService.createRestaurant(formData);
+        navigate('/restaurants')
+    }
+
     return (
         <>
             <h1>Create a New Restaurant</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor='restaurantName'>Restaurant Name: </label>
                 <input 
                     type="text"
                     id='restaurantName'
-                    name='restaurantName'
+                    name='name'
                     className='restaurantFormField'
-                    value={formData.name}
+                    value={formData.restaurantName}
+                    onChange={handleChange}
                     required
                      />
                 <label htmlFor='description'>Restaurant Name: </label>
@@ -28,6 +42,7 @@ const RestaurantForm = ({ user }) => {
                     name='description'
                     className='restaurantFormField'
                     value={formData.description}
+                    onChange={handleChange}
                     required
                      />
                 <label htmlFor='hours'>Hours: </label>
@@ -37,6 +52,7 @@ const RestaurantForm = ({ user }) => {
                     name='hours'
                     className='restaurantFormField'
                     value={formData.hours} 
+                    onChange={handleChange}
                     required />
                 <label htmlFor='image'>Image URL: </label>
                 <input 
@@ -44,13 +60,15 @@ const RestaurantForm = ({ user }) => {
                     id='image'
                     name='image'
                     className='restaurantFormField'
-                    value={formData.image} />
+                    value={formData.image}
+                    onChange={handleChange} />
                 <label htmlFor='category'>Select Category</label>
                 <select
                     name='category'
                     id='category' 
                     className='restaurantFormField'
                     value={formData.category}
+                    onChange={handleChange}
                     required>
                         <option value="Chinese">Chinese</option>
                         <option value="Italian">Italian</option>
@@ -58,6 +76,7 @@ const RestaurantForm = ({ user }) => {
                         <option value="Mexican">Mexican</option>
                         <option value="BBQ">BBQ</option>
                 </select>
+                <button type="submit">Submit</button>
             </form>
         </>
     )

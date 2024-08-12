@@ -7,6 +7,7 @@ import SignupForm from './components/SignupForm/SignupForm'
 import NavBar from './components/NavBar/NavBar'
 import Landing from './components/Landing/Landing'
 import RestaurantsList from './components/RestaurantsList/RestaurantsList'
+import RestaurantForm from './components/RestaurantForm/RestaurantForm'
 
 
 function App() {
@@ -16,6 +17,10 @@ function App() {
   const handleSignout = () => {
     authService.signout()
     setUser(null)
+  }
+
+  const handleChange = () => {
+    
   }
 
   return (
@@ -34,6 +39,9 @@ function App() {
       <Route
         path='/signup'
         element={<SignupForm setUser={setUser}/>} />
+      <Route 
+        path='/restaurants/new'
+        element={<RestaurantForm />} />
     </Routes>
     </>
   )
