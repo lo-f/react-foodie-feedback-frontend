@@ -19,7 +19,7 @@ const RestaurantForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (restaurantId) {
-            preprocessCSS.handleUpdateRestaurant(restaurantId, formData)
+            props.handleUpdateRestaurant(restaurantId, formData)
         } else {
         props.handleAddRestaurant(formData)};
         navigate('/restaurants')
