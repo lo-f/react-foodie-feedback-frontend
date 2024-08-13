@@ -27,12 +27,23 @@ function App() {
     setUser(null);
   };
 
-  const handleAddRestaurant = async (restaurantFormData) => {
+  const handleDeleteRestaurant = async (restaurantId) => {
+    const deletedRestaurant = await restaurantService.deleteRestaurant(restaurantId)
+    setRestaurants(restaurants.filter((restaurant) => restaurant._id !== restaurantId))
+    navigate('/restaurants')
+  }
 
+  const handleAddRestaurant = async (restaurantFormData) => {
     const newRestaurant = await restaurantService.createRestaurant(restaurantFormData);
     setRestaurants([newRestaurant, ...restaurants]);
     navigate("/restaurants");
   };
+
+  const handleEditRestaurant = async (restaurantId, restaurantFormData) => {
+    const editRestaurant = await restaurantService.editRestaurant(restaurantId, restaurantFormData);
+    setRestaurants(restaurants.map((restaurant) => (restaurantId === restaurant._id ? editRestaurant : restaurant)))
+    navigate(`/restaurants/${restaurantId}`)
+  }
 
   useEffect(() => {
     const fetchAllRestaurants = async () => {
@@ -66,8 +77,14 @@ function App() {
             <Route 
               path='/restaurants/:restaurantId'
               element={
-                <RestaurantDetails user={user}/>
+                <RestaurantDetails user={user} handleDeleteRestaurant={handleDeleteRestaurant}/>
               }/>
+            <Route 
+              path="/restaurants/:restaurantId/edit"
+              element={
+                <RestaurantForm handleEditRestaurant={handleEditRestaurant} />
+              }
+              />
           </>
         ) : (
           <>

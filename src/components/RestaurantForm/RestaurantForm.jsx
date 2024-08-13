@@ -11,6 +11,8 @@ const RestaurantForm = (props) => {
         image: '',
         category: ''
     })
+    
+    const { restaurantId, reviewId } = useParams()
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -19,13 +21,11 @@ const RestaurantForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (restaurantId) {
-            props.handleUpdateRestaurant(restaurantId, formData)
+            props.handleEditRestaurant(restaurantId, formData)
         } else {
         props.handleAddRestaurant(formData)};
-        navigate('/restaurants')
     }
 
-    const { restaurantId, reviewId } = useParams()
 
     useEffect(() => {
         const fetchRestaurant = async () => {
