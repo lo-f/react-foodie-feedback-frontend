@@ -5,6 +5,11 @@ const RestaurantsList = (props) => {
         <>
         <h1>Restaurants</h1>
         <main>
+            <header>
+                <div>
+                    <Link to={'/restaurants/new'}>Add Restaurant</Link>
+                </div>
+            </header>
             {props.restaurants.map((restaurant) => {
                 return <Link key={restaurant._id} to={`/restaurants/${restaurant._id}`}>
                     <header>

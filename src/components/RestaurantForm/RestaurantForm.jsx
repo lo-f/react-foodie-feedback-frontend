@@ -37,7 +37,7 @@ const RestaurantForm = (props) => {
 
     return (
         <>
-            <h1>Create a New Restaurant</h1>
+            <h1>{restaurantId ? "Edit Restaurant" : "Create a New Restaurant"}</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='restaurantName'>Restaurant Name: </label>
                 <input 
