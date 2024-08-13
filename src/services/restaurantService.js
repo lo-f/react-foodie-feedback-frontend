@@ -38,6 +38,34 @@ const createRestaurant = async (restaurantFormData) => {
     }
 };
 
+const deleteRestaurant = async (restaurantId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${restaurantId}`, {
+            method: 'DELETE',
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+        });
+        return res.json();
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+const editRestaurant = async (restaurantId, restaurantFormData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${restaurantId}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(restaurantFormData)
+        });
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const createReview = async (restaurantId, reviewFormData) => {
     try {
         const res = await fetch(`${BASE_URL}/${restaurantId}/reviews`, {
@@ -54,4 +82,4 @@ const createReview = async (restaurantId, reviewFormData) => {
     }
 }
 
-export default { index, show, createRestaurant, createReview }
+export default { index, show, createRestaurant, createReview, deleteRestaurant, editRestaurant }
