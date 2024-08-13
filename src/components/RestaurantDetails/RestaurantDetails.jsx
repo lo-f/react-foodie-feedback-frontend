@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading.jsx'
 
 
-const RestaurantDetails = (props) => {
+const RestaurantDetails = ({ user }) => {
     const { restaurantId } = useParams();
 
     console.log('restaurantId:', restaurantId)
@@ -36,7 +36,7 @@ const RestaurantDetails = (props) => {
                     <p>{restaurant.name}</p>
                 </header>
             </section>
-            {/* <section>
+            <section>
                 <h2>Reviews</h2>
                 <ReviewForm handleAddReview={handleAddReview} />
                 {!restaurant.reviews.length && <p>No reviews for this restaurant!</p>}
@@ -47,15 +47,15 @@ const RestaurantDetails = (props) => {
                             <div>
                                 {review.author._id === user._id && (
                                     <>
-                                    
+
                                     </>
                                 )}
                             </div>
                         </header>
                     </article>
                 ))}
-                <p>{review.text}</p>
-            </section> */}
+                {/* <p>{reviews[0].text}</p> */}
+            </section>
         </main>
     )
 }

@@ -66,7 +66,7 @@ function App() {
             <Route 
               path='/restaurants/:restaurantId'
               element={
-                <RestaurantDetails />
+                <RestaurantDetails user={user}/>
               }/>
           </>
         ) : (
