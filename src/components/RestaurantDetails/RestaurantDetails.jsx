@@ -9,8 +9,6 @@ import Loading from '../../components/Loading/Loading.jsx'
 const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
     const { restaurantId } = useParams();
 
-    console.log('restaurantId:', restaurantId)
-
     const [restaurant, setRestaurant] = useState(null)
 
     const RestaurantReviews = ({ restaurantId }) => {
@@ -32,8 +30,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
         const fetchRestaurant = async () => {
             const restaurantData = await restaurantService.show(restaurantId);
             setRestaurant(restaurantData)
-            console.log('restaurantData:', restaurantData)
-        }
+            }
         fetchRestaurant();
     }, [restaurantId]);
 
