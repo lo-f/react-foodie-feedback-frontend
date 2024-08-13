@@ -20,15 +20,21 @@ function App() {
   const [restaurants, setRestaurants] = useState([]);
 
   const getAllReviews = async () => {
-    const reviewsArray = [];
+    const reviewPropertiesArray = [];
     const restaurants = await restaurantService.index()
     restaurants.forEach(restaurant => {
       const restaurantReviews = restaurant.reviews;
       restaurantReviews.forEach(review => {
-        reviewsArray.push(review)
+        reviewPropertiesArray.push(
+          { text: review.text, 
+            _id: review._id,
+          rating: review.rating,
+          restaurant: restaurant,
+          author: review.author
+        })
       })
     })
-    return reviewsArray
+    return reviewPropertiesArray
   }
 
   const navigate = useNavigate();

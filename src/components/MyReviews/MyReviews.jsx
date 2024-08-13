@@ -3,13 +3,13 @@ import { useState, useEffect } from "react"
  
 const MyReviews = (props) => {
     const { getAllReviews, user } = props;
-    const [userReviews, setUserReviews] = useState([])
+    const [userReviewObject, setUserReviewObject] = useState([])
 
     const filterReviews = async () => {
-        const reviews = await getAllReviews();
-        const userReviews = reviews.filter(review => review.author === user._id);
+        const reviewPropsArray = await getAllReviews();
+        const userReviews = reviewPropsArray.filter(reviewObject => reviewObject.author === user._id);
         console.log(userReviews)
-        setUserReviews(userReviews);
+        setUserReviewObject(userReviews);
     }
     
 
@@ -21,12 +21,14 @@ const MyReviews = (props) => {
         <>
         
         <main>
-            {userReviews.length > 0 ? (
-            userReviews.map((review) => (
-                <Link key={review._id} to={`/myreviews/${review._id}`}>
+            {userReviewObject.length > 0 ? (
+            userReviewObject.map((review, idx) => (
+                <Link key={idx} to={`/myreviews/${review._id}`}>
                     <header>
                         <div>
-                            <h2>{review.restaurant}</h2>
+                            <h2>{review.restaurant.name}</h2>
+                            <p>{`${review.rating} stars`}</p>
+                            <p>{review.text}</p>
                         </div>
                     </header>
                 </Link>
