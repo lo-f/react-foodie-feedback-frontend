@@ -6,13 +6,27 @@ import { Link } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading.jsx'
 
 
-const RestaurantDetails = ({ user, handleDeleteRestaurant }) => {
+const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
     const { restaurantId } = useParams();
 
     console.log('restaurantId:', restaurantId)
 
     const [restaurant, setRestaurant] = useState(null)
 
+    const RestaurantReviews = ({ restaurantId }) => {
+        const [reviews, setReviews] = useState([])
+
+        useEffect(() => {
+            const fetchReviews = async () => {
+                try {
+                    const res = restaurantService.show(restaurantId)
+                    setReviews(res.data.reviews)
+                } catch (error) {
+                    console.error('Error fetching reviews', error)
+                }
+            }
+            fetchReviews()
+        });[restaurantId]}
 
     useEffect(() => {
         const fetchRestaurant = async () => {
@@ -52,7 +66,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant }) => {
                 {restaurant.reviews.map((review) => (
                     <article key={review._id}> 
                         <header>
-                            <div>
+                            {/* <div>
                      
                                 {review.author._id === user._id && (
                                     <>
@@ -62,8 +76,9 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant }) => {
                                     </button>
                                     </>
                                 )}
-                            </div>
+                            </div> */}
                         </header>
+                        <p>{review.author.username}</p>
                         <p>{review.text}</p>
                     </article>
                 ))}
