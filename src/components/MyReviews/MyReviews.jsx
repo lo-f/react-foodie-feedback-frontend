@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react"
  
 const MyReviews = (props) => {
-    const { reviews, user } = props;
-    const userReviews = reviews.filter(review => review.author === user)
+    const { getAllReviews, user } = props;
+    const [userReviews, setUserReviews] = useState([])
+
+    const filterReviews = async () => {
+        const reviews = await getAllReviews();
+        const userReviews = reviews.filter(review => review.author === user._id);
+        console.log(userReviews)
+        setUserReviews(userReviews);
+    }
+    
+
+    useEffect(() => {
+        filterReviews();
+    }, [user.username]);
+
     return(
         <>
         
@@ -12,7 +26,7 @@ const MyReviews = (props) => {
                 <Link key={review._id} to={`/myreviews/${review._id}`}>
                     <header>
                         <div>
-                            <h2>{restaurant.name}</h2>
+                            <h2>{review.restaurant}</h2>
                         </div>
                     </header>
                 </Link>

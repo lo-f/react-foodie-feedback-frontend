@@ -18,7 +18,18 @@ import Loading from './components/Loading/Loading'
 function App() {
   const [user, setUser] = useState(authService.getUser());
   const [restaurants, setRestaurants] = useState([]);
-  const [reviews, setReviews] = useState([]);
+
+  const getAllReviews = async () => {
+    const reviewsArray = [];
+    const restaurants = await restaurantService.index()
+    restaurants.forEach(restaurant => {
+      const restaurantReviews = restaurant.reviews;
+      restaurantReviews.forEach(review => {
+        reviewsArray.push(review)
+      })
+    })
+    return reviewsArray
+  }
 
   const navigate = useNavigate();
 
@@ -51,7 +62,7 @@ function App() {
             <Route path="/" element={<Landing user={user} />} />
             <Route
               path="myreviews"
-              element={<MyReviews reviews={reviews} user={user} />}
+              element={<MyReviews getAllReviews={getAllReviews} user={user} />}
             />
             <Route
               path="/restaurants"
