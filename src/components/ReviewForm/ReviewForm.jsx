@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ReviewForm = () => {
+const ReviewForm = ({ handleAddReview}) => {
     const [review, setReview] = useState({
         rating: '',
         text: '',
@@ -8,13 +8,13 @@ const ReviewForm = () => {
     
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+        setReview({ ...review, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //TODO handle add comment
-        setFormData({ text: '', rating: ''})
+        handleAddReview(review)
+        setReview({ text: '', rating: ''})
     };
 
     return (
