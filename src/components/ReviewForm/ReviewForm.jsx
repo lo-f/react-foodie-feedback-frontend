@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import restaurantService from '../../services/restaurantService';
 
-const ReviewForm = ({ currentReviewData}) => {
+const ReviewForm = (props) => {
     const [review, setReview] = useState({
         rating: '',
         text: '',

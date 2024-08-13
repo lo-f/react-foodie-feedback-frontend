@@ -4,6 +4,7 @@ import restaurantService from "../../services/restaurantService";
  
 const MyReviews = (props) => {
     const { getAllReviews, user } = props;
+    const [editingReview, setEditingReview] = useState(null)
     const navigate = useNavigate();
     const [userReviewObject, setUserReviewObject] = useState([])
 
@@ -20,8 +21,13 @@ const MyReviews = (props) => {
 
 
     const handleDeleteReview = async (restaurantId, reviewId) => {
-        await restaurantService.deleteReview(restaurantId, reviewId)
+        const deletedReview = await restaurantService.deleteReview(restaurantId, reviewId)
+        setUserReviewObject(userReviewObject.filter((review) => review._id !== reviewId))
         navigate('/myreviews')
+    }
+
+    const handleEditClick = (review) => {
+        setEditingReview(review)
     }
 
     return(
@@ -29,7 +35,7 @@ const MyReviews = (props) => {
         <main>
             {userReviewObject.length > 0 ? (
             userReviewObject.map((review, idx) => (
-                <Link key={idx} to={`/restaurants/${review.restaurant._id}`}>
+                <div key={idx}>
                     <header>
                         <div id="reviewInfo">
                             <h2>{review.restaurant.name}</h2>
@@ -41,10 +47,11 @@ const MyReviews = (props) => {
                                 onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
                                 Delete Review
                             </button>
-                            <Link to={`/${review._id}/edit`}>Edit Review</Link>
+                            <button onClick={() => handleEditClick(review)}>Edit Review</button>
                         </div>
                     </header>
-                </Link>
+                </div>
+    
 
             ))
         ) : (
