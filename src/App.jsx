@@ -12,12 +12,14 @@ import RestaurantForm from "./components/RestaurantForm/RestaurantForm";
 import MyReviews from "./components/MyReviews/MyReviews";
 import RestaurantDetails from "./components/RestaurantDetails/RestaurantDetails"
 import restaurantService from "./services/restaurantService";
+import ReviewForm from "./components/ReviewForm/ReviewForm";
 import Loading from './components/Loading/Loading'
 
 
 function App() {
   const [user, setUser] = useState(authService.getUser());
   const [restaurants, setRestaurants] = useState([]);
+  const [currentReviewData, setCurrentReviewData] = useState(null)
 
   const getAllReviews = async () => {
     const reviewPropertiesArray = [];
@@ -78,9 +80,10 @@ function App() {
           <>
             <Route path="/" element={<Landing user={user} />} />
             <Route
-              path="myreviews"
+              path="/myreviews"
               element={<MyReviews getAllReviews={getAllReviews} user={user} />}
             />
+            
             <Route
               path="/restaurants"
               element={<RestaurantsList restaurants={restaurants} />}

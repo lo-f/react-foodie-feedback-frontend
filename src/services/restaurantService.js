@@ -82,4 +82,45 @@ const createReview = async (restaurantId, reviewFormData) => {
     }
 }
 
-export default { index, show, createRestaurant, createReview, deleteRestaurant, editRestaurant }
+
+const deleteReview = async (restaurantId, reviewId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${restaurantId}/reviews/${reviewId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const editReview = async (restaurantId, reviewId, reviewFormData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${restaurantId}/reviews/${reviewId}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reviewFormData)
+        });
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export default { 
+    index,
+    show, 
+    createRestaurant, 
+    createReview, 
+    deleteRestaurant, 
+    editRestaurant,
+    deleteReview,
+    editReview
+}
