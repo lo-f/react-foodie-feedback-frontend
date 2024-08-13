@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import restaurantService from '../../services/restaurantService';
-import { useNavigate } from 'react-router-dom';
 
-const ReviewForm = (props) => {
+const ReviewForm = ({ currentReviewData}) => {
     const [review, setReview] = useState({
         rating: '',
         text: '',
@@ -11,7 +10,6 @@ const ReviewForm = (props) => {
 
     const { restaurantId, reviewId } = useParams()
 
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchRestaurant = async () => {
