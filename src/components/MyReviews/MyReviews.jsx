@@ -1,6 +1,7 @@
 import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react"
 import restaurantService from "../../services/restaurantService";
+import ReviewForm from "../ReviewForm/ReviewForm";
  
 const MyReviews = (props) => {
     const { getAllReviews, user } = props;
@@ -19,6 +20,9 @@ const MyReviews = (props) => {
         filterReviews();
     }, [user.username]);
 
+    const handleAddReview = async (restaurantId, reviewId, reviewData) => {
+        restaurantService.editReview(restaurant._id, review._id, reviewData)
+    }
 
     const handleDeleteReview = async (restaurantId, reviewId) => {
         const deletedReview = await restaurantService.deleteReview(restaurantId, reviewId)
@@ -37,18 +41,28 @@ const MyReviews = (props) => {
             userReviewObject.map((review, idx) => (
                 <div key={idx}>
                     <header>
-                        <div id="reviewInfo">
+                        {editingReview ? (
+                            <ReviewForm 
+                                review={editingReview}
+                                handleAddReview={handleAddReview}
+                                onSave={() => {filterReviews()}}/>
+                            
+                        ) : (<div id="reviewInfo">
                             <h2>{review.restaurant.name}</h2>
                             <p>{`${review.rating} stars`}</p>
                             <p>{review.text}</p>
+                            <div id="buttons">
+                                <button 
+                                    onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
+                                    Delete Review
+                                </button>
+                                <button 
+                                    onClick={() => handleEditClick(review)}>
+                                    Edit Review
+                                </button>
                         </div>
-                        <div id="buttons">
-                            <button 
-                                onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
-                                Delete Review
-                            </button>
-                            <button onClick={() => handleEditClick(review)}>Edit Review</button>
-                        </div>
+                        </div>)}
+             
                     </header>
                 </div>
     

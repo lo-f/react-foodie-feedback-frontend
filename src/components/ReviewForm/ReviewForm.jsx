@@ -25,7 +25,11 @@ const ReviewForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.handleAddReview(review);
+        if (restaurantId && reviewId) {
+            restaurantService.updateReview(restaurantId, reviewId, review)
+        } else {
+            props.handleAddReview(review);
+        }
         setReview({ text: '', rating: '', })
     };
 
