@@ -68,6 +68,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
                     <button onClick={() => handleDeleteRestaurant(restaurantId)}>Delete</button>
                     </>
                 </header>
+                <img src={restaurant.image ? restaurant.image : "../../public/images/default-restaurant-image.jpg"} alt="" />
                 <p>{restaurant.category}</p>
                 <p>{restaurant.hours}</p>
                 <p>{restaurant.description}</p>
