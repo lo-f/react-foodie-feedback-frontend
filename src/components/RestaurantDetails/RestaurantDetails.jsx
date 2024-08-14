@@ -4,6 +4,7 @@ import restaurantService from "../../services/restaurantService.js"
 import ReviewForm from "../ReviewForm/ReviewForm"
 import { Link } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading.jsx'
+import './RestaurantDetails.css'
 
 
 const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
@@ -62,7 +63,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
         <main>
             <section>
                 <header>
-                    <p>{restaurant.name}</p>
+                    <h1 id="restaurantTitle">{restaurant.name}</h1>
                     <>
                     <Link to={`/restaurants/${restaurantId}/edit`}>Edit</Link>
                     <button onClick={() => handleDeleteRestaurant(restaurantId)}>Delete</button>
