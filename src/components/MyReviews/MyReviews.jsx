@@ -61,16 +61,6 @@ const MyReviews = (props) => {
                             <h2>{review.restaurant.name}</h2>
                             <p>{`${review.rating} stars`}</p>
                             <p>{review.text}</p>
-                            <div id="buttons">
-                                <button 
-                                    onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
-                                    Delete Review
-                                </button>
-                                <button 
-                                    onClick={() => handleEditClick(review)}>
-                                    Edit Review
-                                </button>
-                        </div>
                         <div id="buttons">
                             <button 
                                 onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
