@@ -35,6 +35,7 @@ const ReviewForm = (props, onClose, ) => {
             } catch (error) {
                 console.error('Error editing review:', error)
             }
+
         } else {
             props.handleAddReview(review);
         }
