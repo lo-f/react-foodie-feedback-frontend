@@ -58,7 +58,7 @@ const MyReviews = (props) => {
                                 onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
                                 Delete Review
                             </button>
-                            <button onClick={() => handleEditClick(review)}>Edit Review</button>
+                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`}>Edit Review</Link>
                         </div>
                     </header>
                 </div>
