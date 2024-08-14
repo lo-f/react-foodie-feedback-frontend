@@ -27,11 +27,20 @@
     justify-content: flex-end;
   }
   
-  .container li {
+  .container li a{
     margin-left: 35px;
     text-align: right;
-    color: green !important;
-    
+    color: #96E9FA;
+    font-size: 120%
+  }
+
+  .container li a:hover{
+    margin-left: 35px;
+    text-align: right;
+    color: #b0cad1;
+
+    font-weight: bold;
+    text-decoration: underline;
   }
   
   @media only screen and (max-width: 414px) {
@@ -39,7 +48,6 @@
       padding-left: 0px;
     }
     .container li {
-      font-size: 15px;
-      color: green !important;
+      font-size: 40px;
     }
   }
