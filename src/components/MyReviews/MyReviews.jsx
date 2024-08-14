@@ -5,9 +5,9 @@ import ReviewForm from "../ReviewForm/ReviewForm";
  
 const MyReviews = (props) => {
     const { getAllReviews, user } = props;
-    const [editingReview, setEditingReview] = useState(null)
     const navigate = useNavigate();
     const [userReviewObject, setUserReviewObject] = useState([])
+    const [editingReview, setEditingReview] = useState(null)
 
     const filterReviews = async () => {
         const reviewPropsArray = await getAllReviews();
@@ -34,10 +34,20 @@ const MyReviews = (props) => {
         setEditingReview(review)
     }
 
+    const handleCloseEditForm = () => {
+        setEditingReview(null)
+    };
+
     return(
         <>
         <main>
-            {userReviewObject.length > 0 ? (
+            {editingReview ? (
+                <ReviewForm 
+                    review={editingReview}
+                    onClose={handleCloseEditForm}
+                />
+            ) : 
+            (userReviewObject.length > 0 ? (
             userReviewObject.map((review, idx) => (
                 <div key={idx}>
                     <header>
@@ -70,6 +80,7 @@ const MyReviews = (props) => {
             ))
         ) : (
             <p>You haven't made any reviews!</p>
+            )
         )}
         </main>
         </>

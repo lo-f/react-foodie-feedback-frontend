@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate, } from 'react-router-dom'
 import restaurantService from '../../services/restaurantService';
 
-const ReviewForm = (props) => {
+const ReviewForm = (props, onClose, ) => {
     const [review, setReview] = useState({
         rating: '',
         text: '',
@@ -10,6 +10,7 @@ const ReviewForm = (props) => {
 
     const { restaurantId, reviewId } = useParams()
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchRestaurant = async () => {
@@ -26,7 +27,13 @@ const ReviewForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (restaurantId && reviewId) {
-            restaurantService.updateReview(restaurantId, reviewId, review)
+            try{
+            restaurantService.editReview(restaurantId, reviewId, review);
+            navigate(-1)
+            } catch (error) {
+                console.error('Error editing review:', error)
+            }
+
         } else {
             props.handleAddReview(review);
         }
