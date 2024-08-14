@@ -105,6 +105,12 @@ function App() {
                 <RestaurantForm handleEditRestaurant={handleEditRestaurant} />
               }
               />
+            <Route 
+              path="/restaurants/:restaurantId/reviews/:reviewId/edit"
+              element={
+                <ReviewForm user={user}/>
+              }
+              />
           </>
         ) : (
           <>

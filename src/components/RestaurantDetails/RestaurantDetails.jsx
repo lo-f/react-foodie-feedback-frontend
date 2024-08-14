@@ -14,22 +14,26 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
     const RestaurantReviews = ({ restaurantId }) => {
         const [reviews, setReviews] = useState([])
 
-        useEffect(() => {
-            const fetchReviews = async () => {
-                try {
-                    const res = restaurantService.show(restaurantId)
-                    setReviews(res.data.reviews)
-                } catch (error) {
-                    console.error('Error fetching reviews', error)
-                }
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const res = restaurantService.show(restaurantId)
+                setReviews(res.data.reviews)
+            } catch (error) {
+                console.error('Error fetching reviews', error)
             }
-            fetchReviews()
-        });[restaurantId]}
+        }
+        fetchReviews()
+    });[restaurantId]}
 
     useEffect(() => {
         const fetchRestaurant = async () => {
+            try {
             const restaurantData = await restaurantService.show(restaurantId);
             setRestaurant(restaurantData)
+            } catch (error) {
+                console.error('Error fetching restaurant data:', error)
+            }
             }
         fetchRestaurant();
     }, [restaurantId]);
@@ -37,6 +41,19 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
     const handleAddReview = async (reviewFormData) => {
         const newReview = await restaurantService.createReview(restaurantId, reviewFormData);
         setRestaurant({...restaurant, reviews: [...restaurant.reviews, newReview]})
+
+    }
+
+    const handleDeleteReview = async (reviewId) => {
+        try {
+            await restaurantService.deleteReview(restaurant._id, reviewId)
+            setRestaurant({
+                ...restaurant,
+                reviews: restaurant.reviews.filter((review) => review._id !== reviewId)
+            })
+        } catch (error) {
+            console.error('Failed to Delete Review:', error)
+        }
     }
 
     if (!restaurant) return <Loading />;
@@ -58,12 +75,12 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
             <section>
                 <h2>Reviews</h2>
                 <ReviewForm handleAddReview={handleAddReview} />
-                {!restaurant.reviews.length && <p>No reviews for this restaurant!</p>}
+                {!restaurant.reviews.length && <p>Be the first to review this restaurant!</p>}
 
                 {restaurant.reviews.map((review) => (
                     <article key={review._id}> 
                         <header>
-                            {/* <div>
+                            <div>
                      
                                 {review.author._id === user._id && (
                                     <>
@@ -73,7 +90,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
                                     </button>
                                     </>
                                 )}
-                            </div> */}
+                            </div>
                         </header>
                         <p>{review.author.username}</p>
                         <p>{review.text}</p>
