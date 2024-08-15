@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, } from 'react-router-dom'
 import restaurantService from '../../services/restaurantService';
 
-const ReviewForm = (props, onClose, ) => {
+const ReviewForm = (props) => {
     const [review, setReview] = useState({
         rating: '',
         text: '',
