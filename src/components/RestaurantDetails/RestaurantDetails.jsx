@@ -14,23 +14,6 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
 
   const setRating = () => { return }
 
-  const RestaurantReviews = ({ restaurantId }) => {
-    const [reviews, setReviews] = useState([]);
-
-    useEffect(() => {
-      const fetchReviews = async () => {
-        try {
-          const res = restaurantService.show(restaurantId);
-          setReviews(res.data.reviews);
-        } catch (error) {
-          console.error("Error fetching reviews", error);
-        }
-      };
-      fetchReviews();
-    });
-    [restaurantId];
-  };
-
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
