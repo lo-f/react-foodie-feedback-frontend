@@ -1,4 +1,39 @@
 
+.reviewContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    flex-direction: row;
+    background-color: white;
+}
+
+.reviewCard {
+    background-color: #999b9b;
+    margin: 20px; 
+    border-radius: 15px;
+    padding: 20px; 
+}
+
+.rating {
+    background-color: black;
+    border-radius: 5px;
+    color: #00FAD0;
+}
+
+.link {
+    color: white;
+    background: black; 
+    padding: 10px;
+    border-radius: 7px;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p {
+    font-size: 20px; 
+}
+
 h1 {
-    
+    text-align: center;
 }

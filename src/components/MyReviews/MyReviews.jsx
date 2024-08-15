@@ -2,6 +2,7 @@ import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react"
 import restaurantService from "../../services/restaurantService";
 import ReviewForm from "../ReviewForm/ReviewForm";
+import RatingReview from "../RatingReview/RatingReview";
 import './MyReviews.css'
  
 const MyReviews = (props) => {
@@ -16,6 +17,8 @@ const MyReviews = (props) => {
             return reviewObject.author === user._id});
         setUserReviewObject(userReviews);
     }
+
+    const setRating = () => {};
 
     useEffect(() => {
         filterReviews();
@@ -52,7 +55,7 @@ const MyReviews = (props) => {
             ) : 
             (userReviewObject.length > 0 ? (
             userReviewObject.map((review, idx) => (
-                <div key={idx}>
+                <div key={idx} className="reviewCard">
                     <header>
                         {editingReview ? (
                             <ReviewForm 
@@ -62,17 +65,16 @@ const MyReviews = (props) => {
                             
                         ) : (<div id="reviewInfo">
                             <h2>{review.restaurant.name}</h2>
-                            <p>{`${review.rating} stars`}</p>
+                            <RatingReview rating={review.rating} setRating={setRating}/>
                             <p>{review.text}</p>
                         <div id="buttons">
                             <button 
                                 onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
                                 Delete Review
                             </button>
-                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`}>Edit Review</Link>
+                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`} className='link'>Edit Review</Link>
                         </div>
                         </div>)}
-             
                     </header>
                 </div>
     
