@@ -4,6 +4,7 @@ import restaurantService from "../../services/restaurantService.js";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
+import RatingReview from "../RatingReview/RatingReview.jsx";
 import "./RestaurantDetails.css";
 
 const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
