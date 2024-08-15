@@ -19,9 +19,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
       try {
         const restaurantData = await restaurantService.show(restaurantId);
         setRestaurant(restaurantData);
-      } catch (error) {
-        console.error("Error fetching restaurant data:", error);
-      }
+      } catch (error) {}
     };
     fetchRestaurant();
   }, [restaurantId]);
@@ -44,9 +42,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
         ...restaurant,
         reviews: restaurant.reviews.filter((review) => review._id !== reviewId),
       });
-    } catch (error) {
-      console.error("Failed to Delete Review:", error);
-    }
+    } catch (error) {}
   };
 
   if (!restaurant) return <Loading />;
