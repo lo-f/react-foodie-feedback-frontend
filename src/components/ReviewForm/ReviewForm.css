@@ -1,0 +1,13 @@
+form {
+    background-color: beige;
+    padding: 25px; 
+}
+
+select {
+    width: 150px; 
+    color: black;
+}
+
+textarea {
+    width: 500px;
+}

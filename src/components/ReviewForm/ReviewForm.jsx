@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, } from 'react-router-dom'
 import restaurantService from '../../services/restaurantService';
+import './ReviewForm.css'
 
 const ReviewForm = (props) => {
     const [review, setReview] = useState({
@@ -43,7 +44,10 @@ const ReviewForm = (props) => {
     };
 
     return (
+        <>
+
         <form onSubmit={handleSubmit}>
+        <h2>Write a Review!</h2>
             <label htmlFor='rating'>Rating: </label>
             <select 
                 value={review.rating} 
@@ -69,6 +73,7 @@ const ReviewForm = (props) => {
             <br />
             <button type="submit">Submit</button>
         </form>
+        </>
     );
 };
 
