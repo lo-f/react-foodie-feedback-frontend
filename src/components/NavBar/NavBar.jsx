@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom';
-import styles from './NavBar.module.css'
+import styles from "./NavBar.module.css"
+import Logo from '../../../public/images/logo.png'
+
 
 const NavBar = ({ user, handleSignout }) => {
   return (
     <>
       { user ? (
         <nav className={styles.container}>
+          <Link to='/'>
+          <img src={Logo}/>
+          </Link>
+
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/myreviews">My Reviews</Link></li>
@@ -15,10 +21,18 @@ const NavBar = ({ user, handleSignout }) => {
         </nav>
       ) : (
         <nav className={styles.container}>
+        
+          <Link to='/'>
+          <img src={Logo}/>
+          </Link>
+
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/signin">Sign In</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
+            <li><Link to="/signup" style={{backgroundColor:'#9beafa', color:'black', padding:'3px', borderRadius:'8%'}}>
+                  Sign Up
+                </Link>
+            </li>
           </ul>
         </nav>
       )}

@@ -65,28 +65,26 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
 
   if (!restaurant) return <Loading />;
 
-  return (
-    <main>
-      <section>
-        <header>
-          <h1 id="restaurantTitle">{restaurant.name}</h1>
-          <div id="editAndDeleteContainer">
-            <Link to={`/restaurants/${restaurantId}/edit`}>Edit</Link>
-            <button onClick={() => handleDeleteRestaurant(restaurantId)}>
-              Delete
-            </button>
-          </div>
-        </header>
-        <p>{restaurant.category}</p>
-        <p>{restaurant.hours}</p>
-        <p>{restaurant.description}</p>
-      </section>
-      <section>
-        <h2>Reviews</h2>
-        <ReviewForm handleAddReview={handleAddReview} />
-        {!restaurant.reviews.length && (
-          <p>Be the first to review this restaurant!</p>
-        )}
+    return (
+        <main>
+            <section>
+                <header>
+                    <p>{restaurant.name}</p>
+                    <>
+                    <Link to={`/restaurants/${restaurantId}/edit`}>Edit</Link>
+                    <button onClick={() => handleDeleteRestaurant(restaurantId)}>Delete</button>
+                    </>
+                </header>
+                <img src={restaurant.image ? restaurant.image : "../../public/images/default-restaurant-image.jpg"} alt="" />
+                <p>{restaurant.category}</p>
+                <p>{restaurant.hours}</p>
+                <p>{restaurant.description}</p>
+            </section>
+            <section>
+                <h2>Reviews</h2>
+                <ReviewForm handleAddReview={handleAddReview} />
+                {!restaurant.reviews.length && <p>Be the first to review this restaurant!</p>}
+
 
         {restaurant.reviews.map((review) => (
           <article key={review._id}>
