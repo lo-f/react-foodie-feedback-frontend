@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, } from 'react-router-dom'
 import restaurantService from '../../services/restaurantService';
+import RatingReview from '../RatingReview/RatingReview';
 import './ReviewForm.css'
 
 const ReviewForm = (props) => {
@@ -8,6 +9,10 @@ const ReviewForm = (props) => {
         rating: '',
         text: '',
     });
+
+    const setRating = (rating) => {
+        setReview({rating: rating, text: review.text})
+    }
 
     const { restaurantId, reviewId } = useParams()
 
@@ -48,20 +53,7 @@ const ReviewForm = (props) => {
 
         <form onSubmit={handleSubmit}>
         <h2>Write a Review!</h2>
-            <label htmlFor='rating'>Rating: </label>
-            <select 
-                value={review.rating} 
-                onChange={handleChange} 
-                id='rating'
-                name='rating'
-                className='reviewFormField'>
-                    <option value="">Select a rating</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-            </select>
+            <RatingReview rating={review.rating} setRating={setRating}/>
             <br />
             <label htmlFor='text'>Write your review: </label>
             <textarea 

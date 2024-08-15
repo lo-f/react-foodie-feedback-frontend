@@ -4,12 +4,15 @@ import restaurantService from "../../services/restaurantService.js";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
+import RatingReview from "../RatingReview/RatingReview.jsx";
 import "./RestaurantDetails.css";
 
 const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
   const { restaurantId } = useParams();
 
   const [restaurant, setRestaurant] = useState(null);
+
+  const setRating = () => { return }
 
   const RestaurantReviews = ({ restaurantId }) => {
     const [reviews, setReviews] = useState([]);
@@ -105,6 +108,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
               </div>
             </header>
             <p>{review.author.username}</p>
+            <RatingReview rating={review.rating} setRating={setRating}/>
             <p>{review.text}</p>
           </article>
         ))}
