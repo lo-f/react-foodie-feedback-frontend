@@ -12,6 +12,8 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
 
   const [restaurant, setRestaurant] = useState(null);
 
+  const setRating = () => { return }
+
   const RestaurantReviews = ({ restaurantId }) => {
     const [reviews, setReviews] = useState([]);
 
@@ -106,6 +108,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
               </div>
             </header>
             <p>{review.author.username}</p>
+            <RatingReview rating={review.rating} setRating={setRating}/>
             <p>{review.text}</p>
           </article>
         ))}
