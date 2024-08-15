@@ -96,7 +96,9 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
                 <article key={review._id}>
                     <div>
                         <h3 style={{borderBottom:'solid 1px gray', margin:'0 0 6px'}}>{review.author.username}</h3>
-                        <RatingReview rating={review.rating} setRating={setRating}/>
+                        <div className={styles.starRating} style={{display:'flex', flexDirection:'row'}}>
+                          <RatingReview rating={review.rating} setRating={setRating}/>
+                        </div>
                         <p2>{review.text}</p2>
                     </div>
                     <header style={{padding:'0', justifyContent:'flex-end', gap: '10px'}}>
