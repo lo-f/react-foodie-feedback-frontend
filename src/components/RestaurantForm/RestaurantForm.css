@@ -1,0 +1,36 @@
+.formContainer {
+    background-color: beige;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.bodyContainer {
+    width: 100vw;
+    display: flex; 
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column
+
+}
+
+input {
+    background-color: white;
+    color: black
+}
+
+textarea {
+    background-color: white;
+    color: black;
+    height: 100px;
+}
+
+select {
+    background-color: white;
+    margin-bottom: 20px; 
+}
