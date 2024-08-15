@@ -2,6 +2,7 @@ import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react"
 import restaurantService from "../../services/restaurantService";
 import ReviewForm from "../ReviewForm/ReviewForm";
+import './MyReviews.css'
  
 const MyReviews = (props) => {
     const { getAllReviews, user } = props;
@@ -41,6 +42,8 @@ const MyReviews = (props) => {
     return(
         <>
         <main>
+            <h1>My Reviews</h1>
+            <div className="reviewContainer">
             {editingReview ? (
                 <ReviewForm 
                     review={editingReview}
@@ -79,6 +82,7 @@ const MyReviews = (props) => {
             <p>You haven't made any reviews!</p>
             )
         )}
+        </div>
         </main>
         </>
     )
