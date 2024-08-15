@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import restaurantService from '../../services/restaurantService'
 import { useNavigate, useParams } from 'react-router-dom'
+import './RestaurantForm.css'
 
 const RestaurantForm = (props) => {
     const navigate = useNavigate();
@@ -36,7 +37,8 @@ const RestaurantForm = (props) => {
     }, [restaurantId])
 
     return (
-        <>
+        <div className='bodyContainer'>
+        <div className='formContainer'>
             <h1>{restaurantId ? "Edit Restaurant" : "Create a New Restaurant"}</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='restaurantName'>Restaurant Name: </label>
@@ -92,7 +94,8 @@ const RestaurantForm = (props) => {
                 </select>
                 <button type="submit">Submit</button>
             </form>
-        </>
+        </div>
+        </div>
     )
 }
 
