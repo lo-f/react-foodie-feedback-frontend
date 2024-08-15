@@ -6,9 +6,7 @@ const index = async () => {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
         return res.json();
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) {}
 }
 
 const show = async (restaurantId) => {
@@ -17,9 +15,7 @@ const show = async (restaurantId) => {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
         });
         return res.json();
-    } catch (error) {
-        console.log (error)
-    }
+    } catch (error) {}
 };
 
 const createRestaurant = async (restaurantFormData) => {
@@ -33,9 +29,7 @@ const createRestaurant = async (restaurantFormData) => {
             body: JSON.stringify(restaurantFormData)
         });
         return res.json();
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) {}
 };
 
 const deleteRestaurant = async (restaurantId) => {
@@ -45,9 +39,7 @@ const deleteRestaurant = async (restaurantId) => {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
         });
         return res.json();
-    } catch(error) {
-        console.log(error)
-    }
+    } catch(error) {}
 }
 
 const editRestaurant = async (restaurantId, restaurantFormData) => {
@@ -61,9 +53,7 @@ const editRestaurant = async (restaurantId, restaurantFormData) => {
             body: JSON.stringify(restaurantFormData)
         });
         return res.json()
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) {}
 }
 
 const createReview = async (restaurantId, reviewFormData) => {
@@ -77,9 +67,7 @@ const createReview = async (restaurantId, reviewFormData) => {
             body: JSON.stringify(reviewFormData)
         });
         return res.json();
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) {}
 }
 
 
@@ -93,9 +81,7 @@ const deleteReview = async (restaurantId, reviewId) => {
             }
         })
         return res.json()
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) {}
 }
 
 const editReview = async (restaurantId, reviewId, reviewFormData) => {
@@ -109,9 +95,7 @@ const editReview = async (restaurantId, reviewId, reviewFormData) => {
             body: JSON.stringify(reviewFormData)
         });
         return res.json()
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) {}
 }
 
 export default { 
