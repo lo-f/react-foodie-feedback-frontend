@@ -1,0 +1,11 @@
+section {
+    color: black
+}
+
+#restaurantTitle {
+    margin-bottom: 5px
+}
+
+#editAndDeleteContainer {
+    display: flex; 
+}

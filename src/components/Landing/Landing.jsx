@@ -1,14 +1,15 @@
+import './Landing.css'
 
 const Landing = ({ user }) => {
     
     return (
-        <>
-            { user ? (
-                <h1>Hello, {user.username}</h1>
-            ) : (
-                <h1>Hello, Guest</h1>
-            )}
-        </>
+        <div className='mainContainer'>
+            <div className='headerArea'>
+                <h1>Foody Feedback</h1>
+                <p>A place to rate our favorite restaurants!</p>
+            </div>
+            <img src="../../../public/images/foody-feedback-logo.jpg" alt="foody feedback logo"/>
+        </div>
     )
 }
 
