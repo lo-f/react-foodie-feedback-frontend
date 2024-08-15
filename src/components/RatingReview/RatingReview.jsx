@@ -8,7 +8,6 @@ const RatingReview = ({ rating, setRating }) => {
           <span
             className='start'
             style={{
-              cursor: 'pointer',
               color: rating >= star ? 'gold' : 'gray',
               fontSize: `35px`,
             }}
