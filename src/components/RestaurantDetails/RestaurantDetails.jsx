@@ -4,7 +4,7 @@ import restaurantService from "../../services/restaurantService.js";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
-import "./RestaurantDetails.css";
+import styles from "./RestaurantDetails.module.css";
 
 const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
   const { restaurantId } = useParams();
@@ -66,49 +66,53 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
   if (!restaurant) return <Loading />;
 
     return (
-        <main>
-            <section>
+        <main className={styles.container}>
+            <section style={{padding: '0px'}}>
                 <header>
-                    <p>{restaurant.name}</p>
+                    <img src={restaurant.image ? restaurant.image : "../../public/images/default-restaurant-image.jpg"} alt="" />
+                    <h1>{restaurant.name}</h1>
                     <>
-                    <Link to={`/restaurants/${restaurantId}/edit`}>Edit</Link>
+                    <Link id={styles.editLink} to={`/restaurants/${restaurantId}/edit`}>Edit</Link>
                     <button onClick={() => handleDeleteRestaurant(restaurantId)}>Delete</button>
                     </>
                 </header>
-                <img src={restaurant.image ? restaurant.image : "../../public/images/default-restaurant-image.jpg"} alt="" />
-                <p>{restaurant.category}</p>
-                <p>{restaurant.hours}</p>
-                <p>{restaurant.description}</p>
+                <div id={styles.restaurantBio}>
+                    <p>{restaurant.category}</p>
+                    <p>{restaurant.hours}</p>
+                    <p style={{fontSize:'large'}}>{restaurant.description}</p>
+                </div>  
             </section>
             <section>
-                <h2>Reviews</h2>
-                <ReviewForm handleAddReview={handleAddReview} />
-                {!restaurant.reviews.length && <p>Be the first to review this restaurant!</p>}
+                <div>
+                    <h2>Reviews</h2>
+                    <ReviewForm handleAddReview={handleAddReview} />
+                    {!restaurant.reviews.length && <p>Be the first to review this restaurant!</p>}
+                </div>
 
-
-        {restaurant.reviews.map((review) => (
-          <article key={review._id}>
-            <header>
-              <div>
-                {review.author._id === user._id && (
-                  <>
-                    <Link
-                      to={`/restaurants/${restaurantId}/reviews/${review._id}/edit`}
-                    >
-                      Edit Review
-                    </Link>
-                    <button onClick={() => handleDeleteReview(review._id)}>
-                      Delete
-                    </button>
-                  </>
-                )}
-              </div>
-            </header>
-            <p>{review.author.username}</p>
-            <p>{review.text}</p>
-          </article>
-        ))}
-      </section>
+                {restaurant.reviews.map((review) => (
+                <article key={review._id}>
+                    <div>
+                        <h3 style={{borderBottom:'solid 1px gray', margin:'0 0 6px'}}>{review.author.username}</h3>
+                        <p2>Rating: {review.rating}</p2>
+                        <p2>{review.text}</p2>
+                    </div>
+                    <header style={{padding:'0', justifyContent:'flex-end', gap: '10px'}}>
+                        {review.author._id === user._id && (
+                        <>
+                            <Link id={styles.editLink}
+                            to={`/restaurants/${restaurantId}/reviews/${review._id}/edit`}
+                            >
+                            Edit Review
+                            </Link>
+                            <button onClick={() => handleDeleteReview(review._id)}>
+                            Delete
+                            </button>
+                        </>
+                        )}
+                    </header>
+                </article>
+                ))}
+            </section>
     </main>
   );
 };
