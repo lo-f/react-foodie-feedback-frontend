@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(22, 22, 22, 0.87);
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,6 +29,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow: auto;
+  height: 100%;
+  padding-top: 80px;
 }
 
 h1 {
@@ -48,7 +51,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #9beafa;
 }
 button:focus,
 button:focus-visible {
