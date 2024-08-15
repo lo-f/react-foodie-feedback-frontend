@@ -52,7 +52,7 @@ const MyReviews = (props) => {
             ) : 
             (userReviewObject.length > 0 ? (
             userReviewObject.map((review, idx) => (
-                <div key={idx}>
+                <div key={idx} className="reviewCard">
                     <header>
                         {editingReview ? (
                             <ReviewForm 
@@ -62,14 +62,14 @@ const MyReviews = (props) => {
                             
                         ) : (<div id="reviewInfo">
                             <h2>{review.restaurant.name}</h2>
-                            <p>{`${review.rating} stars`}</p>
+                            <p className='rating'>{`${review.rating} stars`}</p>
                             <p>{review.text}</p>
                         <div id="buttons">
                             <button 
                                 onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
                                 Delete Review
                             </button>
-                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`}>Edit Review</Link>
+                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`} className='link'>Edit Review</Link>
                         </div>
                         </div>)}
              
