@@ -14,31 +14,12 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
 
   const setRating = () => { return }
 
-  const RestaurantReviews = ({ restaurantId }) => {
-    const [reviews, setReviews] = useState([]);
-
-    useEffect(() => {
-      const fetchReviews = async () => {
-        try {
-          const res = restaurantService.show(restaurantId);
-          setReviews(res.data.reviews);
-        } catch (error) {
-          console.error("Error fetching reviews", error);
-        }
-      };
-      fetchReviews();
-    });
-    [restaurantId];
-  };
-
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
         const restaurantData = await restaurantService.show(restaurantId);
         setRestaurant(restaurantData);
-      } catch (error) {
-        console.error("Error fetching restaurant data:", error);
-      }
+      } catch (error) {}
     };
     fetchRestaurant();
   }, [restaurantId]);
@@ -61,9 +42,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
         ...restaurant,
         reviews: restaurant.reviews.filter((review) => review._id !== reviewId),
       });
-    } catch (error) {
-      console.error("Failed to Delete Review:", error);
-    }
+    } catch (error) {}
   };
 
   if (!restaurant) return <Loading />;
@@ -99,7 +78,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
                         <div className={styles.starRating} style={{display:'flex', flexDirection:'row'}}>
                           <RatingReview rating={review.rating} setRating={setRating}/>
                         </div>
-                        <p2>{review.text}</p2>
+                        <p>{review.text}</p>
                     </div>
                     <header style={{padding:'0', justifyContent:'flex-end', gap: '10px'}}>
                         {review.author._id === user._id && (

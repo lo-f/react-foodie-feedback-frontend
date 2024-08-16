@@ -20,7 +20,6 @@ const signup = async (formData) => {
     }
     return json;
   } catch (err) {
-    console.log(err);
     throw err;
   }
 };
