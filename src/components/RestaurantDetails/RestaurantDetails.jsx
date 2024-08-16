@@ -51,7 +51,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
         <main className={styles.container}>
             <section style={{padding: '0px'}}>
                 <header>
-                    <img src={restaurant.image ? restaurant.image : "../../public/images/default-restaurant-image.jpg"} alt="" />
+                    <img src={restaurant.image ? restaurant.image : "../../public/images/default-restaurant-image.png"} alt="a restaurant logo" />
                     <h1>{restaurant.name}</h1>
                     <>
                     <Link id={styles.editLink} to={`/restaurants/${restaurantId}/edit`}>Edit</Link>
