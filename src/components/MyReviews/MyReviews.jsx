@@ -70,10 +70,10 @@ const MyReviews = (props) => {
                             <RatingReview rating={review.rating} setRating={setRating}/>
                             <p>{review.text}</p>
                         <div id="buttons">
-                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`} className='link'>Edit Review</Link>
+                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`} className='link'>Edit</Link>
                             <button 
                                 onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
-                                Delete Review
+                                Delete
                             </button>
                         </div>
                         </div>)}

@@ -86,7 +86,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
                             <Link id={styles.editLink}
                             to={`/restaurants/${restaurantId}/reviews/${review._id}/edit`}
                             >
-                            Edit Review
+                            Edit
                             </Link>
                             <button onClick={() => handleDeleteReview(review._id)}>
                             Delete
