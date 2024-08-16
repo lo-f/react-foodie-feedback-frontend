@@ -4,14 +4,17 @@
     flex-wrap: wrap;
     width: 100vw;
     flex-direction: row;
-    background-color: white;
+    background-color: #f4f4f4;
+    position: relative;
 }
 
 .reviewCard {
-    background-color: #999b9b;
-    margin: 20px; 
-    border-radius: 15px;
+    background-color: white;
+    margin: 10px; 
+    border-radius: 8px;
     padding: 20px; 
+    border: 1px solid gray;
+    max-width: 400px;
 }
 
 .rating {
@@ -21,19 +24,32 @@
 }
 
 .link {
-    color: white;
-    background: black; 
-    padding: 10px;
+    color: black;
+    background: white;
+    padding: 8px 16px;
     border-radius: 7px;
-    margin-left: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    border: 1px solid black
+
 }
 
 p {
     font-size: 20px; 
 }
 
-h1 {
+#myReviewHeader {
     text-align: center;
+    background-color: white;
+    margin: 0;
+    padding: 60px;
+    border-bottom: 1px solid gray;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
 }

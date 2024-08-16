@@ -29,7 +29,7 @@ const NavBar = ({ user, handleSignout }) => {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/signin">Sign In</Link></li>
-            <li><Link to="/signup" style={{backgroundColor:'#9beafa', color:'black', padding:'3px', borderRadius:'8%'}}>
+            <li><Link to="/signup" style={{backgroundColor:'#9beafa', color:'black', padding:'8px', borderRadius:'8%'}}>
                   Sign Up
                 </Link>
             </li>
