@@ -47,7 +47,7 @@ const RestaurantForm = (props) => {
                     id='restaurantName'
                     name='name'
                     className='restaurantFormField'
-                    value={formData.restaurantName}
+                    value={formData.name}
                     onChange={handleChange}
                     required
                      />
