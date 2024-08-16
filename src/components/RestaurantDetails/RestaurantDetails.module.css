@@ -81,4 +81,11 @@
     cursor: pointer;
     transition: border-color 0.25s;
     color: black;
+    max-width: 100px;
+}
+
+button {
+    margin: 0px;
+    padding: 10px 0px;
+    max-width: 100px;
 }
