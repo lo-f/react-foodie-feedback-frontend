@@ -15,8 +15,8 @@
 
 form {
     display: flex;
-    flex-direction: column
-
+    flex-direction: column;
+    margin: 20px;
 }
 
 input {

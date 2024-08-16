@@ -45,7 +45,9 @@ const MyReviews = (props) => {
     return(
         <>
         <main>
-            <h1>My Reviews</h1>
+            <header id="myReviewHeader">
+                <h1>My Reviews</h1>
+            </header>
             <div className="reviewContainer">
             {editingReview ? (
                 <ReviewForm 
@@ -68,11 +70,11 @@ const MyReviews = (props) => {
                             <RatingReview rating={review.rating} setRating={setRating}/>
                             <p>{review.text}</p>
                         <div id="buttons">
+                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`} className='link'>Edit Review</Link>
                             <button 
                                 onClick={() => handleDeleteReview(review.restaurant._id, review._id)}>
                                 Delete Review
                             </button>
-                            <Link to={`/restaurants/${review.restaurant._id}/reviews/${review._id}/edit`} className='link'>Edit Review</Link>
                         </div>
                         </div>)}
                     </header>

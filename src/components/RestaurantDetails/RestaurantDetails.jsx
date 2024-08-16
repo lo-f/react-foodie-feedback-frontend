@@ -87,7 +87,7 @@ const RestaurantDetails = ({ user, handleDeleteRestaurant, review }) => {
             </section>
             <section>
                 <div>
-                    <h2>Reviews</h2>
+                    <h2 style={{margin:'20px'}}>Reviews</h2>
                     <ReviewForm handleAddReview={handleAddReview} />
                     {!restaurant.reviews.length && <p>Be the first to review this restaurant!</p>}
                 </div>

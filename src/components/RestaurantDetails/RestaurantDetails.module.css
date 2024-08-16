@@ -16,7 +16,7 @@
 
 .container > section {
     width: 100%;
-    padding: 22px;
+    padding: 22px 20px 0px;
     display: flex;
     flex-direction: column;
     background-color: #f4f4f4;
@@ -73,12 +73,12 @@
 
 #editLink {
     border-radius: 8px;
-  border: 1px solid black;
-  padding: 0.5em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: black;
+    border: 1px solid black;
+    padding: 0.5em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    color: black;
 }
